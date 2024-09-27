@@ -8,7 +8,7 @@ import mongoose from "mongoose";
 import Employees from "./models/EmployeeData.js";
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 // For our express app to understand JSON
 app.use(express.json());
@@ -77,7 +77,9 @@ app.put(`/update/:arg`, async (req, res) => {
     const { arg } = req.params;
     const data = await Employees.findByIdAndUpdate(arg, req.body);
     if (!data) {
-      return res.status(404).json({ Message: `Data not found. ID: '${arg}' Invalid` });
+      return res
+        .status(404)
+        .json({ Message: `Data not found. ID: '${arg}' Invalid` });
     }
     res.status(200).json(await Employees.findById(arg));
   } catch (error) {
@@ -91,11 +93,15 @@ app.delete(`/delete/:arg`, async (req, res) => {
     const { arg } = req.params;
     const data = await Employees.findByIdAndDelete(arg);
     if (!data) {
-      return res.status(404).json({ Message: `Data not found. ID: '${arg}' Invalid` });
+      return res
+        .status(404)
+        .json({ Message: `Data not found. ID: '${arg}' Invalid` });
     }
     res.status(200).send(data);
   } catch (error) {
     console.log(error.message);
     res.status(500).send(error.message);
-  } 
+  }
 });
+
+export default app;

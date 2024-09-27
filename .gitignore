@@ -3,3 +3,4 @@
 # For Files : .fileName
 
 node_modules/
+.vercel
