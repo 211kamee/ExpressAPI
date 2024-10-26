@@ -1,8 +1,0 @@
-git init
-npm init -y
-
-npm i express
-npm i --save-dev @types/express [For import syntax]
-
-npm i nodemon -D
-npm i mongoose
